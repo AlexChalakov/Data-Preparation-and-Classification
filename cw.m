@@ -24,6 +24,7 @@ count = 99;
 finalBag = removeInfrequentWords(newBag,count);
 %Creating the Tf-idf matrix
 M1 = tfidf(finalBag);
+%compressing the matrix into a usable variable
 M1 = full(M1);
 figure(1)
 subplot(111)
@@ -35,12 +36,14 @@ title('Wordcloud')
 unique(ID.sentiment);
 labels = table2array(ID(:,1));
 size(labels)
-whos labels
+%whos labels
 
 %Features and Labels
+%Training features and labels
 featureTraining = M1(1:6432,:);
 labelsTrainingFeat = categorical(table2array(ID(1:6432,1)));
 
+%Testing features and labels we're going to compare to
 featureTestingRem = M1(6433:end,:);
 labelsTestingRem = categorical(table2array(ID(6433:end,1)));
 
@@ -49,6 +52,7 @@ labelsTestingRem = categorical(table2array(ID(6433:end,1)));
 treemodel = fitctree(featureTraining, labelsTrainingFeat);
 predictionsTree = predict(treemodel, featureTestingRem);
 
+%Getting correct predictions and accuracy for algorithm
 correctPredictionsTree = sum(labelsTestingRem == predictionsTree);
 accuracyTree = correctPredictionsTree / size(labelsTestingRem,1);
 
