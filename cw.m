@@ -1,4 +1,4 @@
-unzip SentimentAnalysisData.zip SentimentAnalysisData
+unzip SentimentAnalysisData.zip
 % We're using the files in the zip file SentimentAnalysisData.zip, so first step is
 % going to be to unzip it and extract the contents inside. The databasa
 % that we want to use is text_emotion_data_filtered.csv which is inside the
@@ -6,7 +6,7 @@ unzip SentimentAnalysisData.zip SentimentAnalysisData
 
 % readtable() function to put the data into matlab and size() to check how
 % big it is
-ID = readtable('SentimentAnalysisData/SentimentAnalysisData/text_emotion_data_filtered.csv');
+ID = readtable('SentimentAnalysisData/text_emotion_data_filtered.csv');
 size(ID)
 %size is 8040 entries and its 2 columns big
 
